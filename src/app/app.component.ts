@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from "rxjs/Observable";
+import 'rxjs/add/operator/toPromise';
 import _ from 'lodash';
 
 @Component({
@@ -27,7 +28,12 @@ export class AppComponent implements OnInit {
         }, 
         () => {
           console.log('received response from: ', url);
-          resolve(_.values(this.response));
+          const result = [];
+          // add key as ID to value
+          _.mapKeys(this.response, (value, key) => {
+            result.push(_.merge({ id: key}, value));
+          });
+          resolve(result);
         }
       )
     });
@@ -47,39 +53,36 @@ export class AppComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  loadDataSync() {
     this.loadData()
       .then(data => this.items = data)
       .then(() => this.initSortOrder()); 
+  }
+
+  ngOnInit() {
+    this.loadDataSync();
   }
 
   onRefresh() {
-    this.loadData()
-      .then(data => this.items = data)
-      .then(() => this.initSortOrder()); 
+    this.loadDataSync();
   }
 
   onTurnOn(item: any) {
-    return new Promise((resolve, reject) => { 
     console.log(item);
-    const url = API_PATH + '/lights/' + item.uniqueid + '/state';
-    this.http.put(url, { on: true })
-        .subscribe(response => this.response = response.json(), 
-        err => {
-          console.log('error during http request: ', url, err)
-          reject(err);
-        }, 
-        () => {
-          console.log('received response from: ', url, ' response: ', this.response);
-          
-          resolve(_.values(this.response));
-        }
-      )
-    })
+    const url = API_PATH + '/lights/' + item.id + '/state';
+    const httpPut = this.http.put(url, { on: true }).toPromise()
+      .then(response => this.response = response.json())
+      .then(result => console.log(result[0].error))
+      .then(() => this.loadDataSync());
   }
 
   onTurnOff(item: any) {
     console.log(item);
+    const url = API_PATH + '/lights/' + item.id + '/state';
+    const httpPut = this.http.put(url, { on: false }).toPromise()
+      .then(response => this.response = response.json())
+      .then(result => console.log(result[0].error))
+      .then(() => this.loadDataSync());
   }
 
   onDetails(item: any) {
