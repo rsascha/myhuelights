@@ -1,0 +1,5 @@
+// Overwrite default and user settings.
+{
+    "editor.renderWhitespace": "boundary",
+    "files.trimTrailingWhitespace": false
+}
