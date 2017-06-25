@@ -1,7 +1,17 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { 
+  Component, 
+  OnInit, 
+  Input, 
+  Output, 
+  EventEmitter, 
+  ChangeDetectionStrategy 
+} from '@angular/core';
+
 import { Observable } from 'rxjs/Observable';
+import { SwitchLightEvent } from 'app/events/switch-light-event';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-display-lights',
   templateUrl: './display-lights.component.html',
   styleUrls: ['./display-lights.component.scss']
@@ -12,7 +22,7 @@ export class DisplayLightsComponent implements OnInit {
   lights: Observable<Array<any>>;
 
   @Output()
-  onSwitchLight = new EventEmitter<any>();
+  onSwitchLight = new EventEmitter<SwitchLightEvent>();
 
   constructor() { }
 
@@ -20,10 +30,8 @@ export class DisplayLightsComponent implements OnInit {
   }
 
   switchLight(id: number, switchTo: boolean) {
-    this.onSwitchLight.emit({
-      id,
-      switchTo
-    });
+    this.onSwitchLight.emit(
+      new SwitchLightEvent(id, switchTo));
   }
 
 }

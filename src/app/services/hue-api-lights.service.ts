@@ -35,4 +35,11 @@ export class HueApiLightsService {
       });
   }
 
+  // https://www.developers.meethue.com/documentation/lights-api#16_set_light_state
+  setLightState(id: number, state: boolean): Observable<any> {
+    const url = this.API_PATH + '/lights/' + id + '/state';
+    return this.http.put(url, { on: state })
+      .map(response => response.json());
+  }
+
 }

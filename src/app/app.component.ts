@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/toPromise';
 import _ from 'lodash';
 import { HueApiLightsService } from 'app/services/hue-api-lights.service';
+import { SwitchLightEvent } from 'app/events/switch-light-event';
 
 @Component({
   selector: 'app-root',
@@ -26,15 +27,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.lights = this.hueApiLightsService.getAllLights();
-
-
     this.loadDataSync();
   }
 
-  switchLight(event) {
-    console.log(event);
+  switchLight(event: SwitchLightEvent) {
+    this.hueApiLightsService.setLightState(event.id, event.switchTo)
+      .subscribe(
+        result  => console.log(result),
+        err     => console.log(err),
+        ()      => this.lights = this.hueApiLightsService.getAllLights()
+    );
   }
-
 
   loadData() {
     return new Promise((resolve, reject) => { 
