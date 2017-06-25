@@ -1,0 +1,18 @@
+<div class="d-flex flex-wrap bd-highlight">
+  <div *ngFor="let light of lights | async" class="p-2 bd-highlight">
+    <div class="card" style="width: 20rem;">
+      <div class="card-block">
+        <h4 class="card-title">{{light.name}}</h4>
+        <div class="card-text">
+          <ul class="list-group">
+            <li *ngIf="light.state.on" (click)="switchLight(light.id, false)" class="btn btn-success">On</li>
+            <li *ngIf="!light.state.on" (click)="switchLight(light.id, true)" class="btn btn-info">Off</li>
+            <li class="list-group-item">{{light.type}}</li>
+            <li class="list-group-item">{{light.modelid}}</li>
+          </ul>
+          <a (click)="onDetails(light)" href="#" class="btn btn-primary d-flex justify-content-center">Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

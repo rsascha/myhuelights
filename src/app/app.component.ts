@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/toPromise';
 import _ from 'lodash';
+import { HueApiLightsService } from 'app/services/hue-api-lights.service';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +11,30 @@ import _ from 'lodash';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  
+  public lights: Observable<Array<any>>;
+
   private response : Response;
   
   title = 'app works!';
   items;
 
-  constructor(private http: Http) {}
+  constructor(
+    private http: Http,
+    private hueApiLightsService: HueApiLightsService
+  ) {}
+
+  ngOnInit() {
+    this.lights = this.hueApiLightsService.getAllLights();
+
+
+    this.loadDataSync();
+  }
+
+  switchLight(event) {
+    console.log(event);
+  }
+
 
   loadData() {
     return new Promise((resolve, reject) => { 
@@ -59,10 +78,6 @@ export class AppComponent implements OnInit {
       .then(() => this.initSortOrder()); 
   }
 
-  ngOnInit() {
-    this.loadDataSync();
-  }
-
   onRefresh() {
     this.loadDataSync();
   }
@@ -89,7 +104,6 @@ export class AppComponent implements OnInit {
     console.log(item);
   }
 }
-
 
 export const config = {
 	HueService: {

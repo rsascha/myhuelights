@@ -1,4 +1,13 @@
 <div>
+
+<hr>
+
+<app-display-lights [lights]="lights" (onSwitchLight)="switchLight($event)"></app-display-lights>
+
+<hr>
+
+
+
   <button (click)="onRefresh()" class="btn btn-primary">Refresh</button>
 
   <div ngbDropdown class="d-inline-block">

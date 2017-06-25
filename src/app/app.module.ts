@@ -4,18 +4,25 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HueApiLightsService } from './services/hue-api-lights.service';
+import { DisplayLightsComponent } from './view-components/display-lights/display-lights.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DisplayLightsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule, 
+    HttpModule,
     NgbModule.forRoot()
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    HueApiLightsService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

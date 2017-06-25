@@ -1,0 +1,38 @@
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import _ from 'lodash';
+
+@Injectable()
+export class HueApiLightsService {
+
+  // TODO: Refactoring
+  private config = {
+    HueService: {
+      IpAddress: '192.168.179.26',
+      ApiKey: '87aUe0Z6FtEfP4LBC4-Q9jNIucJ0Z5O-lrkcBiJe',
+    }
+  };
+
+  // TODO: Refactoring
+  private API_PATH =
+    'http://' + this.config.HueService.IpAddress + '/api/' + this.config.HueService.ApiKey;
+
+  constructor(private http: Http) { }
+
+  // https://www.developers.meethue.com/documentation/lights-api#11_get_all_lights
+  getAllLights(): Observable<Array<any>> {
+    const url = this.API_PATH + '/lights';
+    return this.http.get(url)
+      .map(response => response.json())
+      .map(json => {
+        const result = [];
+        _.mapKeys(json, (value, key) => {
+          result.push(_.merge({ id: key}, value));
+        });
+        return result;
+      });
+  }
+
+}
