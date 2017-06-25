@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LightsPageComponent } from 'app/page-components/lights-page/lights-page.component';
 import { GroupsPageComponent } from 'app/page-components/groups-page/groups-page.component';
+import { ConfigurationPageComponent } from 'app/page-components/configuration-page/configuration-page.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'groups',
     component: GroupsPageComponent
+  },
+  {
+    path: 'configuration',
+    component: ConfigurationPageComponent
   }
 ];
 

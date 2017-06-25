@@ -1,0 +1,18 @@
+
+IP-Address: <input #ipAddr value="192.168.179.26">
+<br>
+Application-Name: <input #appName readonly value="myhuelights">
+<br>
+Device-Name: <input #devName value="MacBook">
+<br>
+
+<button 
+  (click)="onTestIpAddr(ipAddr.value, appName.value, devName.value)" 
+  class="btn btn-primary">Test</button>
+
+<p *ngFor="let alert of alerts">
+  <ngb-alert [dismissible]="false">{{ alert }}</ngb-alert>
+</p>
+
+<br>
+User-Name: <input readonly value="{{hueConfig.userName}}">
