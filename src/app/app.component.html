@@ -1,3 +1,7 @@
 
-<app-display-lights [lights]="lights" (onSwitchLight)="switchLight($event)"></app-display-lights>
+<nav>
+  <a routerLink="/lights" routerLinkActive="active">Lights</a>
+  <a routerLink="/groups" routerLinkActive="active">Groups</a>
+</nav>
 
+<router-outlet></router-outlet>
