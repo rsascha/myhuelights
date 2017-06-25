@@ -1,10 +1,10 @@
-import { 
-  Component, 
-  OnInit, 
-  Input, 
-  Output, 
-  EventEmitter, 
-  ChangeDetectionStrategy 
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
