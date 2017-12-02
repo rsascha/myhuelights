@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from "@angular/http";
+import { HttpClient } from "@angular/common/http";
 import { StorageService } from "app/services/storage.service";
 import { HueConfiguration } from "app/models/hue-configuration";
 
@@ -16,7 +16,7 @@ export class ConfigurationPageComponent implements OnInit {
   public hueConfig: HueConfiguration;
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private storageService: StorageService
   ) {
     this.alerts = new Array<string>();
@@ -31,7 +31,6 @@ export class ConfigurationPageComponent implements OnInit {
     this.http.post('http://' + ipAddr + '/api', {
         devicetype: appName + '#' + devName
       })
-      .map(response => response.json())
       .map(response => response[0])
       .subscribe(
         response => { 
