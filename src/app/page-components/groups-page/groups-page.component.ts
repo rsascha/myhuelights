@@ -14,6 +14,9 @@ export class GroupsPageComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    console.log('init');
+
   }
 
 }

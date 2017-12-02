@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from 'app/services/storage.service';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class HueApiConfigurationService {
 
   constructor(
     private storageService: StorageService,
-    private http: Http
+    private http: HttpClient
   ) { }
 
 }
