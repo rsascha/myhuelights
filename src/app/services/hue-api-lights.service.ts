@@ -25,12 +25,12 @@ export class HueApiLightsService {
   getAllLights(): Observable<Array<any>> {
     const url = this.API_PATH + '/lights';
     return this.http.get(url)
-      .map(json => {
+      .map(res => {
 
-        console.log(json);
+        console.log('getAllLights() res: ', res);
 
         const result = [];
-        _.mapKeys(json, (value, key) => {
+        _.mapKeys(res, (value, key) => {
           result.push(_.merge({ id: key}, value));
         });
         return result;
