@@ -2,7 +2,7 @@
 
 With this project I'm aiming to learn Angular and related state of the art web technologies.
 
-It would be great to bring additional features to my Hue setup like multi tab [Hue Tab switch]()https://www2.meethue.com/en-us/p/hue-tap-switch/046677473365 support.
+It would be great to bring additional features to my Hue setup like multi tab [Hue Tab switch](https://www2.meethue.com/en-us/p/hue-tap-switch/046677473365) support.
 
 Contribution, in case we share the same interest, is happily welcome.
 
