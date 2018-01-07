@@ -9,19 +9,22 @@ import { ConfigurationPageComponent } from 'app/page-components/configuration-pa
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'prefix',
+    pathMatch: 'full',
     redirectTo: 'lights'
   },
   {
     path: 'lights',
+    pathMatch: 'full',
     component: LightsPageComponent
   },
   {
     path: 'groups',
+    pathMatch: 'full',
     component: GroupsPageComponent
   },
   {
     path: 'configuration',
+    pathMatch: 'full',
     component: ConfigurationPageComponent
   }
 ];

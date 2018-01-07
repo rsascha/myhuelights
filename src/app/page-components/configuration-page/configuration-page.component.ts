@@ -17,17 +17,19 @@ export class ConfigurationPageComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private storageService: StorageService
-  ) {
+    private storageService: StorageService) {
+
     this.alerts = new Array<string>();
   }
 
   ngOnInit() {
+    
     this.hueConfig = this.storageService.get('hue-configuration');
     console.log(this.hueConfig);
   }
 
   onTestIpAddr(ipAddr: string, appName: string, devName: string): void {
+    
     this.http.post('http://' + ipAddr + '/api', {
         devicetype: appName + '#' + devName
       })
