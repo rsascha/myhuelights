@@ -1,8 +1,12 @@
 
-<nav>
-  <a routerLink="/lights" routerLinkActive="active" class="btn btn-primary">Lights</a>
-  <a routerLink="/groups" class="btn btn-primary">Groups</a>
-  <a routerLink="/configuration" class="btn btn-primary">Configuration</a>
-</nav>
+<div class="container mb-3">
+
+  <nav class="row justify-content-md-center">
+    <a routerLink="/lights" routerLinkActive="active" class="btn btn-primary ml-3 col col-lg-2">Lights</a>
+    <a routerLink="/groups" class="btn btn-primary ml-3 col col-lg-2">Groups</a>
+    <a routerLink="/configuration" class="btn btn-primary ml-3 col col-lg-2">Configuration</a>
+  </nav>
+  
+</div>
 
 <router-outlet></router-outlet>
