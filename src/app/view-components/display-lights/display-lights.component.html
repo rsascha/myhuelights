@@ -1,10 +1,18 @@
 <div class="container">
   <div *ngFor="let light of lights | async" class="row">
-    <div class="col">{{light.name}}</div>
-    <div *ngIf="light.state.on" (click)="switchLight(light.id, false)" class="btn btn-sm btn-success m-1 col">On</div>
-    <div *ngIf="!light.state.on" (click)="switchLight(light.id, true)" class="btn btn-sm btn-danger  m-1 col">Off</div>
+    <div class="col p-2">{{light.name}}</div>
+    <div class="col">
+      <div *ngIf="light.state.on" (click)="switchLight(light.id, false)" 
+        class="btn btn-sm btn-success m-1">On</div>
+      <div *ngIf="!light.state.on" (click)="switchLight(light.id, true)" 
+        class="btn btn-sm btn-danger  m-1">Off</div>
+    </div>
     <div class="col">{{light.type}}</div>
     <div class="col">{{light.modelid}}</div>
-    <div class="col"><a (click)="onDetails(light)" href="#" class="btn btn-primary d-flex justify-content-center">Details</a></div>
+    <div class="col">
+      <div>
+          <a (click)="onDetails(light)" href="#" class="btn btn-primary">Details</a>
+      </div>
+    </div>
   </div>
 </div>
