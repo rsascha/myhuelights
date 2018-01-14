@@ -34,4 +34,11 @@ export class DisplayLightsComponent implements OnInit {
       new SwitchLightEvent(id, switchTo));
   }
 
+  toggleDetails(light) {
+    if (light.showDetails) {
+      light.showDetails = false;
+    } else {
+      light.showDetails = true;
+    }
+  }
 }

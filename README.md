@@ -12,10 +12,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
@@ -35,7 +31,25 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Development
 
+## Code scaffolding
+
+Use `ng generate <blueprint> <folder>/<name>`
+
+See: [ng generate](https://github.com/angular/angular-cli/wiki/generate)
+
+Sample:
+```
+$ ng generate pipe pipes/orderby
+  create src/app/pipes/orderby.pipe.spec.ts (191 bytes)
+  create src/app/pipes/orderby.pipe.ts (203 bytes)
+  update src/app/app.module.ts (1707 bytes)
+```
+
 ## Resources
+
+### Testing
+
+See: [jasmine](https://jasmine.github.io/2.4/introduction.html)
 
 ### bootstrap (styling)
 

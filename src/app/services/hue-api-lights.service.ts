@@ -23,7 +23,9 @@ export class HueApiLightsService {
 
   // https://www.developers.meethue.com/documentation/lights-api#11_get_all_lights
   getAllLights(): Observable<Array<any>> {
+    
     const url = this.API_PATH + '/lights';
+    console.log(url);
     return this.http.get(url)
       .map(res => {
 
