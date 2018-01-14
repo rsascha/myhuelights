@@ -20,16 +20,26 @@
       <div class="col col-2"></div>
       <div class="col col-2"><button 
         (click)="onTestIpAddr(ipAddr.value, appName.value, devName.value)" 
-        class="btn btn-sm btn-outline-info">Test</button></div>
+        class="btn btn-sm btn-outline-info">Try to connect</button></div>
       <div class="col">
-        <div *ngFor="let alert of alerts">
-            {{ alert }}
-        </div>    
+          <div *ngIf="hueError && hueError.type === '101'">
+          <p>Press the push-link button on the Hue bridge you want to connect to.</p>
+          <img src="assets/link-button.png"/>
+          <p>Details:</p>
+          <pre>{{ hueError | json }}</pre>
+        </div>
       </div>
   </div>
   <div class="row justify-content-md-center">
       <div class="col col-2">User-Name:</div>
       <div class="col col"><input readonly size="50" value="{{hueConfig.userName}}"></div>
+  </div>
+  <div class="row">
+      <div class="col col-2"></div>
+      <div class="col col-2"><button 
+        (click)="saveConfiguration()" 
+        class="btn btn-sm btn-outline-info">Save Configuration</button></div>
+      <div class="col"></div>
   </div>
   <div class="row">
       <div class="col col-2"></div>
