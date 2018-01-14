@@ -47,6 +47,10 @@ $ ng generate pipe pipes/orderby
 
 ## Resources
 
+### Testing
+
+See: [jasmine](https://jasmine.github.io/2.4/introduction.html)
+
 ### bootstrap (styling)
 
 This project is using [bootstrap](http://getbootstrap.com/docs/4.0/getting-started/introduction/).
