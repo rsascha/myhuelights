@@ -1,17 +1,22 @@
 <div class="container">
-  <div *ngFor="let light of lights | async | orderby:'name'" class="row">
-    <div class="col p-2">{{light.name}}</div>
-    <div class="col">
-      <div *ngIf="light.state.on" (click)="switchLight(light.id, false)" 
-        class="btn btn-sm btn-success m-1">On</div>
-      <div *ngIf="!light.state.on" (click)="switchLight(light.id, true)" 
-        class="btn btn-sm btn-danger  m-1">Off</div>
+  <div *ngFor="let light of lights | async | orderby:'name'">
+    <div class="row">
+        <div class="col p-2">{{light.name}}</div>
+        <div class="col">
+          <div *ngIf="light.state.on" (click)="switchLight(light.id, false)" 
+            class="btn btn-sm btn-success m-1">On</div>
+          <div *ngIf="!light.state.on" (click)="switchLight(light.id, true)" 
+            class="btn btn-sm btn-danger  m-1">Off</div>
+        </div>
+        <div class="col">{{light.type}}</div>
+        <div class="col">{{light.modelid}}</div>
+        <div class="col">
+          <a (click)="toggleDetails(light)" href="#_" class="btn btn-primary">Details</a>
+        </div>
     </div>
-    <div class="col">{{light.type}}</div>
-    <div class="col">{{light.modelid}}</div>
-    <div class="col">
-      <div>
-          <a (click)="onDetails(light)" href="#" class="btn btn-primary">Details</a>
+    <div *ngIf="light.showDetails" class="row">
+      <div class="col">
+        <pre>{{ light | json }}</pre>
       </div>
     </div>
   </div>
