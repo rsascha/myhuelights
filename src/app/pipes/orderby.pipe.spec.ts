@@ -1,11 +1,11 @@
 import { OrderbyPipe } from './orderby.pipe';
 
 describe('OrderbyPipe', () => {
-  fit('create an instance', () => {
+  it('create an instance', () => {
     const pipe = new OrderbyPipe();
     expect(pipe).toBeTruthy();
   });
-  fit('check sorting', () => {
+  it('check sorting', () => {
     const pipe = new OrderbyPipe();
     const data = [{ name: 'b'}, { name: 'a'}];
     const result = pipe.transform(data, 'name');
