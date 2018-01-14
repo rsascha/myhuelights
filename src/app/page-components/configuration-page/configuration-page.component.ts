@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { StorageService } from "app/services/storage.service";
 import { HueConfiguration } from "app/models/hue-configuration";
@@ -6,25 +6,45 @@ import { HueConfiguration } from "app/models/hue-configuration";
 @Component({
   selector: 'app-configuration-page',
   templateUrl: './configuration-page.component.html',
-  styleUrls: ['./configuration-page.component.scss']
+  styleUrls: ['./configuration-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConfigurationPageComponent implements OnInit {
 
   public alerts: Array<string>;
   public userName: string;
-
   public hueConfig: HueConfiguration;
+  public ipAddress: string;
 
   constructor(
     private http: HttpClient,
-    private storageService: StorageService) {
+    private storageService: StorageService, 
+    private ref: ChangeDetectorRef) {
 
-    this.alerts = new Array<string>();
+      this.hueConfig = new HueConfiguration('test', '', '', '');
+      this.hueConfig.ipAddress = 'tt';
+      console.log(this.hueConfig);
+      this.alerts = new Array<string>();
   }
 
   ngOnInit() {
-    
-    this.hueConfig = this.storageService.get('hue-configuration');
+
+    const conf = this.storageService.get('hue-configuration');
+    if (conf) {
+      this.hueConfig = conf;
+    } else {
+      this.http.get('https://www.meethue.com/api/nupnp')
+        .map(response => response[0])
+        .subscribe(response => {
+            console.log(response);
+            this.hueConfig.ipAddress = response.internalipaddress;
+            this.ipAddress = response.internalipaddress;
+            // https://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html
+            this.alerts.push('test');
+            console.log(this.hueConfig);
+            this.ref.markForCheck();
+        });
+    }
     console.log(this.hueConfig);
   }
 
@@ -53,5 +73,9 @@ export class ConfigurationPageComponent implements OnInit {
         error => console.log('error: ', error),
         () => console.log('complete')
       );
+  }
+
+  deleteConfiguration(): void {
+    this.storageService.remove('hue-configuration');
   }
 }

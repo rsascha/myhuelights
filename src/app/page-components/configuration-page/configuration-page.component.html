@@ -1,34 +1,43 @@
-
-
-
-<div class="container">
+<div class="container mb-3">
   <div class="row">
-    <div class="col-sm">
-      One of three columns
+    <div class="col col-2">IP-Address:</div>
+    <div class="col col-2"><input #ipAddr value="{{hueConfig.ipAddress}}"/></div>
+    <div class="col">
+      (<a href="http://huetips.com/help/how-to-find-my-bridge-ip-address/" target="_blank">help</a>)
     </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
+  </div>
+  <div class="row">
+      <div class="col col-2">Application-Name:</div>
+      <div class="col col-2"><input #appName readonly value="{{hueConfig.applicationName}}"></div>
+      <div class="col"></div>
+  </div>
+  <div class="row">
+      <div class="col col-2">Device-Name:</div>
+      <div class="col col-2"><input #devName value="{{hueConfig.deviceName}}"></div>
+      <div class="col"></div>
+  </div>
+  <div class="row">
+      <div class="col col-2"></div>
+      <div class="col col-2"><button 
+        (click)="onTestIpAddr(ipAddr.value, appName.value, devName.value)" 
+        class="btn btn-sm btn-outline-info">Test</button></div>
+      <div class="col">
+        <div *ngFor="let alert of alerts">
+            {{ alert }}
+        </div>    
+      </div>
+  </div>
+  <div class="row justify-content-md-center">
+      <div class="col col-2">User-Name:</div>
+      <div class="col col"><input readonly size="50" value="{{hueConfig.userName}}"></div>
+  </div>
+  <div class="row">
+      <div class="col col-2"></div>
+      <div class="col col-2"><button 
+        (click)="deleteConfiguration()" 
+        class="btn btn-sm btn-outline-info">Delete Configuration</button></div>
+      <div class="col"></div>
   </div>
 </div>
 
-IP-Address: <input #ipAddr value="192.168.179.26">
-<br>
-Application-Name: <input #appName readonly value="myhuelights">
-<br>
-Device-Name: <input #devName value="MacBook">
-<br>
 
-<button 
-  (click)="onTestIpAddr(ipAddr.value, appName.value, devName.value)" 
-  class="btn btn-primary">Test</button>
-
-<p *ngFor="let alert of alerts">
-  <ngb-alert [dismissible]="false">{{ alert }}</ngb-alert>
-</p>
-
-<br>
-User-Name: <input readonly value="{{hueConfig.userName}}">
