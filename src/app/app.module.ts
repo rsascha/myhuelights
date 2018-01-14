@@ -22,6 +22,7 @@ import { GroupsPageComponent } from './page-components/groups-page/groups-page.c
 import { HueApiConfigurationService } from 'app/services/hue-api-configuration.service';
 import { StorageService } from 'app/services/storage.service';
 import { ConfigurationPageComponent } from './page-components/configuration-page/configuration-page.component';
+import { OrderbyPipe } from './pipes/orderby.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ConfigurationPageComponent } from './page-components/configuration-page
     DisplayLightsComponent,
     LightsPageComponent,
     GroupsPageComponent,
-    ConfigurationPageComponent
+    ConfigurationPageComponent,
+    OrderbyPipe
   ],
   imports: [
     BrowserModule,

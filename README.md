@@ -35,6 +35,20 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Development
 
+## Auto Generate Files (folder structure)
+
+Use `ng generate <blueprint> <folder>/<name>`
+
+See: [ng generate](https://github.com/angular/angular-cli/wiki/generate)
+
+Sample:
+```
+$ ng generate pipe pipes/orderby
+  create src/app/pipes/orderby.pipe.spec.ts (191 bytes)
+  create src/app/pipes/orderby.pipe.ts (203 bytes)
+  update src/app/app.module.ts (1707 bytes)
+```
+
 ## Resources
 
 ### bootstrap (styling)

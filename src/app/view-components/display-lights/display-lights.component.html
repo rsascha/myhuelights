@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngFor="let light of lights | async" class="row">
+  <div *ngFor="let light of lights | async | orderby:'name'" class="row">
     <div class="col p-2">{{light.name}}</div>
     <div class="col">
       <div *ngIf="light.state.on" (click)="switchLight(light.id, false)" 
